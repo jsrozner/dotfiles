@@ -1,0 +1,4 @@
+#!/bin/bash
+
+system_profiler | grep TRIM | grep Yes ||
+(echo -e "\nTRIM NOT ENABLED" && read -p "Hit enter to close")
