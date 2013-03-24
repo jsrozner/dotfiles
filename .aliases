@@ -1,3 +1,52 @@
+##################
+#### ALIASES #####
+##################
+
+# quick compile
+alias comp="gcc -Wall -g3 -std=c99 -pedantic -o"
+
+# quick ssh
+alias zoo="ssh jsr24@node.zoo.cs.yale.edu"
+alias zoox="ssh -X jsr24@node.zoo.cs.yale.edu"
+alias cabj="ssh 152.74.238.49"		# agn server in chile
+alias bull="ssh -t jsr24@bulldogj.wss.yale.edu ssh jsr24@ib040"
+alias zooprdup="ssh jsr24@node.zoo.cs.yale.edu 'lpr -P zoo2 -o PageSize=Letter -o PageRegion=Letter -o InputSlot=Default -o Resolution=600dpi -o Duplex=DuplexNoTumble'" 
+
+# quick access to local dirs
+alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Spring"
+
+# Git aliases
+alias ga='git add'
+alias gc='git commit'
+alias gg='git'
+alias gb='git branch'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gg='git grep'
+alias gm='git merge'
+alias gs='git status'
+alias gs='git log'
+
+# grep aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# ls aliases
+alias l='ls -lA'
+
+# rails aliases
+alias rs='rails server'
+alias rc='rails console'
+alias ra='bundle exec rake assets:precompile'
+
+
+######
+## STOLEN ALIASES
+######
+
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."

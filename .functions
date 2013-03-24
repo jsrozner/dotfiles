@@ -1,3 +1,43 @@
+##################
+## MY FUNCTIONS ##
+##################
+
+# sshfs quick commands
+mapzoo(){
+	mapsshfs jsr24@node.zoo.cs.yale.edu: Zoo_mount Classes
+}
+
+#mapcabj(){
+	#mapsshfs Cabj_mount
+#}
+
+mapbull(){
+	mapsshfs jsr24@bulldogj.wss.yale.edu: Bull_mount 
+}
+
+# usage: dir to mount, where to mount, dir to cd to
+# mounts if not already mounted
+mapsshfs(){
+	mount | grep $2 >& /dev/null || 
+		sshfs -o follow_symlinks -o cache_timeout=1 $1 /Users/jsrozner/a_Mount/$2 && cd /Users/jsrozner/a_Mount/$2/$3
+}
+
+# safe sleep modifier
+ss(){
+	echo $1
+	if [ "$1" -eq "1" ]; then
+		echo "setting safesleep"
+		sudo pmset -a hibernatemode 3
+	else
+		echo "disabling safesleep"
+		sudo pmset -a hibernatemode 0
+	fi
+}
+
+###################
+# Pulled from git #
+###################
+
 # Simple calculator
 function calc() {
 	local result=""
