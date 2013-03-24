@@ -1,5 +1,9 @@
-# Compiled Python files
+# Compiled files
 *.pyc
+*.o
+
+# Temp files
+*~
 
 # Folder view configuration files
 .DS_Store
