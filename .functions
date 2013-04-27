@@ -15,6 +15,10 @@ mapbull(){
 	mapsshfs jsr24@bulldogj.wss.yale.edu: Bull_mount 
 }
 
+mapomega(){
+	mapsshfs jsr24@omega1.hpc.yale.edu: Omega_mount
+}
+
 # usage: dir to mount, where to mount, dir to cd to
 # mounts if not already mounted
 mapsshfs(){
