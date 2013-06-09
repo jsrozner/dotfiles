@@ -1,3 +1,6 @@
+# check hibernate mode
+pmset -g | grep hibernatemode | grep 0 > /dev/null || echo 'SAFE SLEEP IS SET!'
+
 #look in current directory for executables
 export PATH="$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
 
