@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# add recent files stack to dock
-defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
-
-# SSD mods
-sudo pmset -a sms 0 				# turn off sudden motion sensor
-sudo pmset -a disksleep 0		# don't sleep the SSD
