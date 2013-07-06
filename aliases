@@ -29,7 +29,7 @@ alias gdc='git diff --cached'
 alias gg='git grep'
 alias gm='git merge'
 alias gs='git status'
-alias gs='git log'
+alias gl='git log'
 
 # grep aliases
 alias grep='grep --color=auto'
@@ -44,12 +44,6 @@ alias rs='rails server'
 alias rc='rails console'
 alias ra='bundle exec rake assets:precompile'
 
-
-######
-## STOLEN ALIASES
-######
-
-
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -62,12 +56,10 @@ alias -- -="cd -"
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/Projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
 alias v="vim"
-alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
