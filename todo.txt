@@ -1,4 +1,0 @@
-TODO
-
-- go through aliases, bash_profile, bash_prompt, etc.
-- add script for setup

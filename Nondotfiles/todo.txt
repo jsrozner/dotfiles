@@ -1,6 +1,0 @@
-TODO
-
-- organize into directories
-- go through aliases, bash_profile, bash_prompt, etc.
-- add script for creating symlinks
-- add .symlink ending
