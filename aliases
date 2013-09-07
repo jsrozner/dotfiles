@@ -6,7 +6,7 @@
 alias comp="gcc -Wall -g3 -std=c99 -pedantic -o"
 
 # quick ssh
-alias lin="ssh jsrozner.no-ip.biz"
+alias lin="ssh jsrozner@jsrozner.no-ip.biz"
 alias zoo="ssh jsr24@node.zoo.cs.yale.edu"
 alias zoox="ssh -X jsr24@node.zoo.cs.yale.edu"
 alias cabj="ssh 152.74.238.49"		# agn server in chile
