@@ -19,3 +19,8 @@ set hlsearch
 
 " Wrap lines
 set textwidth=80
+set fo+=t
+
+filetype indent on
+filetype plugin on
+
