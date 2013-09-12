@@ -2,6 +2,14 @@
 ## MY FUNCTIONS ##
 ##################
 
+# change directory and ls
+function cdl { cd $1; ls -la; }
+
+# print to zoo
+zooprfun(){
+  ssh jsr24@node.zoo.cs.yale.edu 'lpr -P zoo2 -o PageSize=Letter -o PageRegion=Letter -o InputSlot=Default -o Resolution=600dpi -o Duplex=DuplexNoTumble' < $1
+}
+
 # sshfs quick commands
 mapzoo(){
 	mapsshfs jsr24@node.zoo.cs.yale.edu: Zoo_mount Classes
