@@ -10,6 +10,7 @@ zooconn() {
 # Quick zoo ssh
 alias zoo="ssh jsr24@node.zoo.cs.yale.edu"
 alias zoox="ssh -X jsr24@node.zoo.cs.yale.edu"
+#alias bull="ssh -t jsr24@bulldogj.wss.yale.edu ssh jsr24@ib040"
 
 alias omega="ssh jsr24@omega1.hpc.yale.edu"
 alias bull="ssh jsr24@bulldogj.wss.yale.edu"

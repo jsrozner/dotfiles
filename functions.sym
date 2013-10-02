@@ -9,6 +9,9 @@ econ() {
   popd
 }
 
+# change directory and ls
+function cdl { cd $1; ls -la; }
+
 # sshfs quick commands
 mapzoo(){
 	mapsshfs jsr24@node.zoo.cs.yale.edu: Zoo_mount Classes
