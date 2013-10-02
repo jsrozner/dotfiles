@@ -2,14 +2,17 @@
 ## MY FUNCTIONS ##
 ##################
 
+# Econ housing time sheet tracking
+econ() {
+  pushd ~/Desktop/housingproject 
+  tracktime.sh $@
+  popd
+}
+
 # sshfs quick commands
 mapzoo(){
 	mapsshfs jsr24@node.zoo.cs.yale.edu: Zoo_mount Classes
 }
-
-#mapcabj(){
-	#mapsshfs Cabj_mount
-#}
 
 mapbull(){
 	mapsshfs jsr24@bulldogj.wss.yale.edu: Bull_mount 

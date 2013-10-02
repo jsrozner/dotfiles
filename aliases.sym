@@ -7,16 +7,11 @@ alias comp="gcc -Wall -g3 -std=c99 -pedantic -o"
 
 # quick ssh
 alias lin="ssh jsrozner@jsrozner.no-ip.biz"
-alias zoo="ssh jsr24@node.zoo.cs.yale.edu"
-alias zoox="ssh -X jsr24@node.zoo.cs.yale.edu"
 alias cabj="ssh 152.74.238.49"		# agn server in chile
-alias bull="ssh jsr24@bulldogj.wss.yale.edu"
-alias omega="ssh jsr24@omega1.hpc.yale.edu"
 #alias bull="ssh -t jsr24@bulldogj.wss.yale.edu ssh jsr24@ib040"
-alias zooprdup="ssh jsr24@node.zoo.cs.yale.edu 'lpr -P zoo2 -o PageSize=Letter -o PageRegion=Letter -o InputSlot=Default -o Resolution=600dpi -o Duplex=DuplexNoTumble'" 
 
 # quick access to local dirs
-alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Spring"
+alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Fall"
 
 # Git aliases
 alias ga='git add'
