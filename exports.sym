@@ -20,4 +20,3 @@ export MANPAGER="less -X"
 
 #simple colors
 export CLICOLOR=1
-#export TERM=xterm-color

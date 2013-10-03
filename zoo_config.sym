@@ -1,0 +1,33 @@
+### 
+# Zoo tricks
+###
+
+# Connect to specific zoo node
+zooconn() {
+  ssh -X jsr24@${1}.zoo.cs.yale.edu
+}
+
+# Quick zoo ssh
+alias zoo="ssh jsr24@node.zoo.cs.yale.edu"
+alias zoox="ssh -X jsr24@node.zoo.cs.yale.edu"
+#alias bull="ssh -t jsr24@bulldogj.wss.yale.edu ssh jsr24@ib040"
+
+alias omega="ssh jsr24@omega1.hpc.yale.edu"
+alias bull="ssh jsr24@bulldogj.wss.yale.edu"
+
+# Zoo print
+alias zooprdup="ssh jsr24@node.zoo.cs.yale.edu 'lpr -P zoo2 -o PageSize=Letter -o PageRegion=Letter -o InputSlot=Default -o Resolution=600dpi -o Duplex=DuplexNoTumble'" 
+
+printzoo(){
+  if [ -d $1 ]; then
+    for i in $1/*; do
+      zooprdup < $i
+    done
+  else
+    zooprdup < $i
+  fi
+}
+
+
+
+
