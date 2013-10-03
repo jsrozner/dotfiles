@@ -3,6 +3,7 @@
 ##################
 
 # Econ housing time sheet tracking
+# Useful only on osx 
 econ() {
   pushd ~/Desktop/housing
   tracktime.sh $@
