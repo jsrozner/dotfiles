@@ -4,7 +4,7 @@
 
 # Econ housing time sheet tracking
 econ() {
-  pushd ~/Desktop/housingproject 
+  pushd ~/Desktop/housing
   tracktime.sh $@
   popd
 }
