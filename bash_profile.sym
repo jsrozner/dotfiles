@@ -46,7 +46,7 @@ fi
 #if [ `uname` == "Linux" ]; then
 #  . .lin_profile
 #fi
-if [ `whoami` == "jsr24"]; then
+if [ `whoami` == "jsr24" ]; then
   . .zoo_profile
 fi
 if [ `hostname` == "jroz-ubuntu" ]; then
