@@ -1,3 +1,9 @@
+" Module setup with pathogen
+execute pathogen#infect()
+
+" Default to bash syntax
+au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
+
 " For syntax highlihgting
 syntax on
 filetype on
