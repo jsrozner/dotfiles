@@ -4,7 +4,7 @@
 
 # Econ housing time sheet tracking
 # Useful only on osx 
-econ() {
+function econ {
   pushd ~/Desktop/housing
   tracktime.sh $@
   popd
