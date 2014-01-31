@@ -41,15 +41,15 @@ complete -W "NSGlobalDomain" defaults
 
 # Execute special setup for osx, zoo, and linux boxes.
 if [ `uname` == "Darwin" ]; then
-  . .osx_profile
+  . ~/.osx_profile
 fi
 #if [ `uname` == "Linux" ]; then
 #  . .lin_profile
 #fi
 if [ `whoami` == "jsr24" ]; then
-  . .zoo_profile
+  . ~/.zoo_profile
 fi
 if [ `hostname` == "jroz-ubuntu" ]; then
-  . .linbox_profile
+  . ~/.linbox_profile
 fi
 

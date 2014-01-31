@@ -11,6 +11,8 @@ alias cabj="ssh 152.74.238.49"		# agn server in chile
 
 # quick access to local dirs
 alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Fall"
+alias econ="cd ~/Desktop/econ_housing/agent-based-housing/"
+alias netw="yale && cd cpsc\ 433"
 
 # Git aliases
 alias ga='git add'
@@ -84,8 +86,9 @@ alias sudo='sudo '
 # Gzip-enabled `curl`
 alias gurl="curl --compressed"
 
+alias bu='brew update; brew upgrade; brew cleanup; brew doctor'
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
+alias update='sudo softwareupdate -i -a; bu; npm update npm -g; npm update -g; sudo gem update'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
