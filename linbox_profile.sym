@@ -1,15 +1,26 @@
 #####
 # LOGIN STUFF
 #####
+
 echo -e '\nLooking for updates... '
-if cat /etc/motd | grep updated > /dev/null && [ "$(cat /etc/motd | grep updated | awk '{print $1}')" != "0" ]; then
-   sudo apt-get update > /dev/null && sudo apt-get upgrade
+if cat /etc/motd | grep updated > /dev/null \
+  && [ "$(cat /etc/motd | grep updated | awk '{print $1}')" != "0" ]; then
+  read -p "Get udpates (y/n)? " choice
+  case "$choice" in
+    y|Y ) sudo apt-get update > /dev/null && sudo apt-get upgrade;;
+    n|N ) echo getting updates;;
+  esac 
 else
   echo -e "No updates available"
 fi
 
 echo -e '\nChecking RAID status...'
-if [ "$(sudo mdadm --detail /dev/md0 | grep Failed | awk '{print $4}')" != "0" ] || ! sudo mdadm --detail /dev/md0 | grep persistent > /dev/null || ! sudo mdadm --detail /dev/md0 | grep clean > /dev/null || [ "$(sudo mdadm --detail /dev/md1 | grep Failed | awk '{print $4}')" != "0" ] || ! sudo mdadm --detail /dev/md1 | grep persistent > /dev/null || ! sudo mdadm --detail /dev/md1 | grep clean > /dev/null ; then
+if [ "$(sudo mdadm --detail /dev/md0 | grep Failed | awk '{print $4}')" != "0" ] \
+  || ! sudo mdadm --detail /dev/md0 | grep persistent > /dev/null \
+  || ! sudo mdadm --detail /dev/md0 | grep clean > /dev/null \
+  || [ "$(sudo mdadm --detail /dev/md1 | grep Failed | awk '{print $4}')" != "0" ] \
+  || ! sudo mdadm --detail /dev/md1 | grep persistent > /dev/null \
+  || ! sudo mdadm --detail /dev/md1 | grep clean > /dev/null ; then
 	echo WARNING: Device has failed. See mdadm --detail
 else
 	echo RAID appears healthy
@@ -19,7 +30,7 @@ echo ""
 
 if cat /etc/motd | grep restart > /dev/null 2>&1; then
   echo Restart required
-  read -p "Restart (y/n)?" choice
+  read -p "Restart (y/n) ?" choice
   case "$choice" in
     y|Y ) echo rebooting && sudo reboot -h now;;
     n|N ) echo not rebooting;;
@@ -28,3 +39,4 @@ fi
 
 # add password-store tab completion
 source /etc/bash_completion.d/password-store
+
