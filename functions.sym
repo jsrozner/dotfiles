@@ -11,7 +11,16 @@ function econ {
 }
 
 # change directory and ls
-function cdl { cd $1; ls -la; }
+function c { cd $1; ls -la; }
+
+# Sending files to MBA at Yale
+function toair {
+  if [ -d $1 ]; then
+    scp -r $1 jsrozner@rozner-mba.wireless.yale.internal:~/Desktop
+  else
+    scp $1 jsrozner@rozner-mba.wireless.yale.internal:~/Desktop
+  fi
+}
 
 # sshfs quick commands
 mapzoo(){
