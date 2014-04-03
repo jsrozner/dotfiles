@@ -1,8 +1,6 @@
 [user]
 	name = Josh Rozner
 	email = jsrozner@gmail.com
-[credential]
-	helper = osxkeychain
 
 [alias]
 	# View the SHA, description, and history graph of the latest 20 commits

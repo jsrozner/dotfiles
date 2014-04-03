@@ -8,7 +8,7 @@
 export PATH="$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
 
 # default OS X CDPATH. Can be overwritten in other profiles.
-export CDPATH=.:~:~/Programming:~/Classes
+# export CDPATH=.:~:~/Programming:~/Classes
 
 # Load the shell dotfiles, and then some:
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,zoo_config}; do

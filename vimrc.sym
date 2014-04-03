@@ -4,6 +4,8 @@ execute pathogen#infect()
 " Nerdtree
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeWinSize = 15 
+
 
 " Default to bash syntax
 au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif

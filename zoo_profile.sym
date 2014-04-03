@@ -4,3 +4,5 @@
 
 alias dec="cd Classes/426/peerster"
 alias netw="cd Classes/433"
+
+export PATH="/c/cs421/bin:$PATH"
