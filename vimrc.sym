@@ -2,9 +2,21 @@
 execute pathogen#infect()
 
 " Nerdtree
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let g:NERDTreeWinSize = 15 
+"""
+"autocmd vimenter * NERDTree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"let g:NERDTreeWinSize = 15 
+"
+" Nerdtree replacement
+" Make netrw more like nerdtree
+let g:netrw_liststyle=3
+" Quickly bring up netrw
+let mapleader=" "
+map <leader>k :Vex<cr> 
+let g:netrw_winsize =      90
+" let g:netrw_preview =       1
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
 
 
 " Default to bash syntax
@@ -35,4 +47,6 @@ set fo+=t
 
 filetype indent on
 filetype plugin on
+
+
 
