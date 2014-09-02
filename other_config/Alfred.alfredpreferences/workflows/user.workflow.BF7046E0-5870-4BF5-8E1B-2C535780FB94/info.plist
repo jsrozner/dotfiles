@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>nvALT_Search</string>
+	<key>connections</key>
+	<dict>
+		<key>99D3ECF7-3A8A-4DE5-BCCA-4AB5FCBEDBDE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BF10B845-468E-4A88-A9D9-8E4C589E387C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1DE34191-215E-42DF-AAB7-C3B6074CE073</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Herman van Boeijen</string>
+	<key>description</key>
+	<string>Search nvALT for text</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>NvALT - Search</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>nv</string>
+				<key>text</key>
+				<string>nvALT</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>99D3ECF7-3A8A-4DE5-BCCA-4AB5FCBEDBDE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>nv://find/{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>BF10B845-468E-4A88-A9D9-8E4C589E387C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "Notational Velocity"
+	reopen
+	activate
+	tell application "System Events" to keystroke "l" using command down
+	tell application "System Events" to keystroke q
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>1DE34191-215E-42DF-AAB7-C3B6074CE073</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This workflow searches nvALT for text and makes sure it becomes the front window to allow you to interact with it.</string>
+	<key>uidata</key>
+	<dict>
+		<key>1DE34191-215E-42DF-AAB7-C3B6074CE073</key>
+		<dict>
+			<key>ypos</key>
+			<real>290</real>
+		</dict>
+		<key>99D3ECF7-3A8A-4DE5-BCCA-4AB5FCBEDBDE</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>BF10B845-468E-4A88-A9D9-8E4C589E387C</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>www.nimbling.com</string>
+</dict>
+</plist>

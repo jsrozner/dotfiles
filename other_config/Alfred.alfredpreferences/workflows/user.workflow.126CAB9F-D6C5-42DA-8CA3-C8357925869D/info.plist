@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.oskarhane.togglewifi</string>
+	<key>connections</key>
+	<dict>
+		<key>55CDEBD3-8819-4468-8BF5-393B121B2922</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>494B5916-4755-4F8D-845E-4EC078363705</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>A79A6CF9-EBD9-4FC1-9F6E-24789138A2A9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DFB386CD-AC33-4582-BB38-1C8A3126FAEA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Oskar Hane</string>
+	<key>description</key>
+	<string>Toggle wifi in OS X</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Toggle WiFi</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>networksetup -setairportpower airport on</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DFB386CD-AC33-4582-BB38-1C8A3126FAEA</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>wifi on</string>
+				<key>subtext</key>
+				<string>Turn WiFi on</string>
+				<key>text</key>
+				<string>WiFi on</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A79A6CF9-EBD9-4FC1-9F6E-24789138A2A9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>wifi off</string>
+				<key>subtext</key>
+				<string>Turn WiFi off</string>
+				<key>text</key>
+				<string>WiFi off</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>55CDEBD3-8819-4468-8BF5-393B121B2922</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>networksetup -setairportpower airport off</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>494B5916-4755-4F8D-845E-4EC078363705</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>494B5916-4755-4F8D-845E-4EC078363705</key>
+		<dict>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+		<key>55CDEBD3-8819-4468-8BF5-393B121B2922</key>
+		<dict>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+		<key>A79A6CF9-EBD9-4FC1-9F6E-24789138A2A9</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>DFB386CD-AC33-4582-BB38-1C8A3126FAEA</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://oskarhane.com</string>
+</dict>
+</plist>
