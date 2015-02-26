@@ -56,3 +56,4 @@ if [ `hostname` == "jroz-ubuntu" ]; then
   . ~/.linbox_profile
 fi
 
+export PATH=/usr/local/sbin:$PATH

@@ -10,4 +10,4 @@ do
 done
 
 # copy other config files
-# cp `pwd`/other_config/private.xml ~/Library/Application\ Support/KeyRemap4MacBook/private.xml 
+cp `pwd`/other_config/private.xml ~/Library/Application\ Support/Karabiner/private.xml 

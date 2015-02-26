@@ -29,6 +29,14 @@ alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSize
 alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
 alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
 alias 1-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
+
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
  
 # 1 Monitor layout
 layout 1monitor 'iTerm':MAIN_FIRST                       ${1-right}
@@ -51,9 +59,12 @@ bind left:${hyper} ${lefthalf}
 bind up:${hyper} ${full}
 bind right:${hyper} ${righthalf}
  
-# App bindings
-bind j:${hyper} focus ${browser}
-bind u:${hyper} focus ${editor}
-bind k:${hyper} focus 'Terminal'
-bind x:${hyper} focus 'Xcode'
-bind g:${hyper} focus 'GitHub'
+bind l:${hyper}    focus right
+bind h:${hyper}     focus left
+bind k:${hyper}       focus up
+bind j:${hyper}     focus down
+ 
+bind a:${hyper} ${topleft}
+bind s:${hyper} ${topright}
+bind z:${hyper} ${bottomleft}
+bind x:${hyper} ${bottomright}
