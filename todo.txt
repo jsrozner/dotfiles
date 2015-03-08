@@ -1,0 +1,8 @@
+- go through aliases, look at other people aliases:
+  https://github.com/pahen/dotfiles
+- put all profile files in a single folder
+
+VIM:
+- consider nerdcommenter
+- consider tabular
+
