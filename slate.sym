@@ -25,6 +25,10 @@ alias full          move screenOriginX;screenOriginY                  screenSize
 alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
 alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
 
+alias leftthird     move screenOriginX;screenOriginY                  screenSizeX/3;screenSizeY
+alias midthird      move screenOriginX+screenSizeX/3;screenOriginY    screenSizeX/3;screenSizeY
+alias rightthird    move screenOriginX+2*screenSizeX/3;screenOriginY  screenSizeX/3;screenSizeY
+
 # Concrete positions
 alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
 alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
@@ -68,3 +72,6 @@ bind a:${hyper} ${topleft}
 bind s:${hyper} ${topright}
 bind z:${hyper} ${bottomleft}
 bind x:${hyper} ${bottomright}
+bind q:${hyper} ${leftthird}
+bind w:${hyper} ${midthird}
+bind e:${hyper} ${rightthird}
