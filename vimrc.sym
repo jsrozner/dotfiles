@@ -1,5 +1,5 @@
 " Module setup with pathogen
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " Nerdtree
 """
