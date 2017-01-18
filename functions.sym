@@ -3,8 +3,10 @@
 ##################
 
 function uni {
-  open -a "Google Chrome" "https://mobile.united.com/FlightStatus/UpgradeList?carrierCode=UA&flightNumber=${1}&flightDate=${4}%2F${5}%2F2015%2000%3A00%3A00&origin=${2}&destination=${3}"
+  year=$(date +'%Y')
+  open -a "Google Chrome" "https://mobile.united.com/FlightStatus/UpgradeList?carrierCode=UA&flightNumber=${1}&flightDate=${4}%2F${5}%2F${year}%2000%3A00%3A00&origin=${2}&destination=${3}"
 }
+
 # Econ housing time sheet tracking
 # Useful only on osx 
 function econ {
