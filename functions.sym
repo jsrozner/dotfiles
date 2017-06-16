@@ -2,6 +2,11 @@
 ## MY FUNCTIONS ##
 ##################
 
+function sc {
+  adb shell screencap -p /sdcard/tmp.png
+  adb pull /sdcard/tmp.png "/Users/rozner/Google Drive/z on mac/a_screenshots/device screenshots/sc.$(date +%F_%H_%M_%S).png"
+}
+
 function uni {
   open -a "Google Chrome" "https://mobile.united.com/FlightStatus/UpgradeList?carrierCode=UA&flightNumber=${1}&flightDate=${4}%2F${5}%2F2015%2000%3A00%3A00&origin=${2}&destination=${3}"
 }
