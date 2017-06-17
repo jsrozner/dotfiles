@@ -8,6 +8,8 @@ alias comp="gcc -Wall -g3 -std=c99 -pedantic -o"
 # quick ssh
 alias lin="ssh jsrozner@jsrozner.no-ip.biz"
 alias cabj="ssh 152.74.238.49"		# agn server in chile
+alias shuai="ssh rozner@shuai.dls.corp.google.com"
+alias jroz="ssh rozner@jroz.mtv.corp.google.com"
 
 # quick access to local dirs
 alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Fall"

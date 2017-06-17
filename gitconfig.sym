@@ -82,4 +82,6 @@
 	insteadOf = "gist:"
 
 [push]
-	default = current
+	default = simple
+[remote "origin"]
+	push = HEAD

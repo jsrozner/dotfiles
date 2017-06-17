@@ -10,4 +10,14 @@ do
 done
 
 # copy other config files
-cp `pwd`/other_config/private.xml ~/Library/Application\ Support/Karabiner/private.xml 
+echo Copying specific config files ...
+echo ...
+
+echo Copying karabiner
+ln -s `pwd`/other_config/karabiner.json ~/.config/karabiner/karabiner.json
+
+
+
+# removed
+# <removed 6/2017> cp `pwd`/other_config/private.xml ~/Library/Application\ Support/Karabiner/private.xml 
+
