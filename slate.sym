@@ -56,8 +56,7 @@ bind e:cmd  ${showNormalHint}
 # The HYPER key
 # ======================================
  
-#alias hyper ctrl;shift;alt;cmd
-alias hyper ctrl
+alias hyper ctrl;shift;alt;cmd
  
 # Location bindings
 bind left:${hyper} ${lefthalf}
