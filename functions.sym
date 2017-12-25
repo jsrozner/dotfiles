@@ -4,7 +4,7 @@
 
 function sc {
   adb shell screencap -p /sdcard/tmp.png
-  adb pull /sdcard/tmp.png "/Users/rozner/Google Drive/z on mac/a_screenshots/device screenshots/sc.$(date +%F_%H_%M_%S).png"
+  adb pull /sdcard/tmp.png "/Users/jsrozner/Desktop/sc.$(date +%F_%H_%M_%S).png"
 }
 
 function uni {

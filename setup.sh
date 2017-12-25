@@ -14,7 +14,8 @@ echo Copying specific config files ...
 echo ...
 
 echo Copying karabiner
-ln -s `pwd`/other_config/karabiner.json ~/.config/karabiner/karabiner.json
+# copy karabiner directory, since single file doesn't work for profile switching
+ln -s `pwd`/other_config/karabiner/ ~/.config/
 
 
 
