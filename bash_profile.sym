@@ -1,14 +1,23 @@
 # bash_profile
+# this is automatically loaded by bashrc
 # sets up default configs
 # many configs are loaded from other files
 # different configs loaded based on OS
 #
 #
+
+# avoid accidental deletes
+alias rm="rm -i"
+
+
 # default OS X PATH, look in current directory
+export GOPATH="$HOME/gopath"
+export PATH="$GOPATH:$GOPATH/bin:$PATH"
 export PATH="$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
 
 # default OS X CDPATH. Can be overwritten in other profiles.
 # export CDPATH=.:~:~/Programming:~/Classes
+
 
 # Load the shell dotfiles, and then some:
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,zoo_config}; do
