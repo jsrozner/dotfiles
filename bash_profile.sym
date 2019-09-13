@@ -11,9 +11,8 @@ alias rm="rm -i"
 
 
 # default OS X PATH, look in current directory
-export GOPATH="$HOME/gopath"
-export PATH="$GOPATH:$GOPATH/bin:$PATH"
-export PATH="$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
+export GOPATH="/usr/local/gopath"
+export PATH="$GOPATH:$GOPATH/bin:$PATH:$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
 
 # default OS X CDPATH. Can be overwritten in other profiles.
 # export CDPATH=.:~:~/Programming:~/Classes

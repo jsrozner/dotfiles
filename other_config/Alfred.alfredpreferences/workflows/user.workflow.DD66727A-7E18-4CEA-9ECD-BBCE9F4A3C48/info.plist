@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>me.riyaz.fn.standardkeys</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>AAE2193C-E6C1-4A1C-8A17-774AF8868DCF</key>
@@ -35,6 +37,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>!fn-toggle</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Toggle Fn keys as standard keys</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CD69778A-A49B-44D1-9F54-B24359DEF8B8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>applescript</key>
 				<string>on alfred_script(q)
 
@@ -63,27 +86,6 @@ end alfred_script</string>
 			<string>alfred.workflow.action.applescript</string>
 			<key>uid</key>
 			<string>AAE2193C-E6C1-4A1C-8A17-774AF8868DCF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>!fn-toggle</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Toggle Fn keys as standard keys</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>CD69778A-A49B-44D1-9F54-B24359DEF8B8</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
