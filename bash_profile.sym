@@ -7,7 +7,7 @@
 #
 
 # avoid accidental deletes
-alias rm="rm -i"
+#alias rm="rm -i"
 
 
 # default OS X PATH, look in current directory
@@ -50,18 +50,44 @@ set -o vi
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
-# Execute special setup for osx, zoo, and linux boxes.
+# Mac specific tweaks
 if [ `uname` == "Darwin" ]; then
+  echo "sourching mac profile"
   . ~/.osx_profile
+  # Use python3 and pip3 as defaults
+  alias python=/usr/local/bin/python3
+  alias pip=/usr/local/bin/pip3
 fi
+
+#### OLD ####
+# Execute special setup for osx, zoo, and linux boxes.
+#
 #if [ `uname` == "Linux" ]; then
 #  . .lin_profile
 #fi
-if [ `whoami` == "jsr24" ]; then
-  . ~/.zoo_profile
-fi
-if [ `hostname` == "jroz-ubuntu" ]; then
-  . ~/.linbox_profile
-fi
+#if [ `whoami` == "jsr24" ]; then
+#  . ~/.zoo_profile
+#fi
+#if [ `hostname` == "jroz-ubuntu" ]; then
+#  . ~/.linbox_profile
+#fi
+#### END OLD ###
 
 export PATH=/usr/local/sbin:$PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="$PATH:/usr/local/anaconda3/bin"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+
+

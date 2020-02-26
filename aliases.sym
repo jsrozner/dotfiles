@@ -6,15 +6,15 @@
 alias comp="gcc -Wall -g3 -std=c99 -pedantic -o"
 
 # quick ssh
-alias lin="ssh jsrozner@jsrozner.no-ip.biz"
-alias cabj="ssh 152.74.238.49"		# agn server in chile
-alias shuai="ssh rozner@shuai.dls.corp.google.com"
-alias jroz="ssh rozner@jroz.mtv.corp.google.com"
+#alias lin="ssh jsrozner@jsrozner.no-ip.biz"
+#alias cabj="ssh 152.74.238.49"		# agn server in chile
+#alias shuai="ssh rozner@shuai.dls.corp.google.com"
+#alias jroz="ssh rozner@jroz.mtv.corp.google.com"
 
 # quick access to local dirs
-alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Fall"
-alias econ="cd ~/Desktop/econ_housing/agent-based-housing/"
-alias netw="yale && cd cpsc\ 433"
+#alias yale="cd /Users/jsrozner/Documents/a_Yale/2013_Fall"
+#alias econ="cd ~/Desktop/econ_housing/agent-based-housing/"
+#alias netw="yale && cd cpsc\ 433"
 
 # Git aliases
 alias ga='git add'
@@ -38,9 +38,9 @@ alias egrep='egrep --color=auto'
 alias l='ls -lA'
 
 # rails aliases
-alias rs='rails server'
-alias rc='rails console'
-alias ra='bundle exec rake assets:precompile'
+#alias rs='rails server'
+#alias rc='rails console'
+#alias ra='bundle exec rake assets:precompile'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -172,4 +172,4 @@ done
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+#alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"

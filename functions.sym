@@ -2,6 +2,10 @@
 ## MY FUNCTIONS ##
 ##################
 
+function con {
+  source ~/.condaprof && conda activate $1
+}
+
 function sc {
   adb shell screencap -p /sdcard/tmp.png
   adb pull /sdcard/tmp.png "/Users/jsrozner/Desktop/sc.$(date +%F_%H_%M_%S).png"
