@@ -2,8 +2,20 @@ export TERM=xterm-color
 
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
+PURPLE=$(tput setaf 5)
 BLUE=$(tput setaf 6)
 WHITE=$(tput setaf 7)
+
+case $(uname) in
+Darwin)
+    #prompt_color='\033[48;5;16m\033[38;5;46m'    # green(46) on black(16)
+    prompt_color=${BLUE}    # green(46) on black(16)
+    ;;
+*)
+    #prompt_color='\033[48;5;16m\033[38;5;196m'   # red(196) on black(16)
+    prompt_color=${PURPLE}
+    ;;
+esac
 
 parse_git_dirty () {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
@@ -12,4 +24,7 @@ parse_git_branch () {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-PS1="\n\[${BLUE}\]\u@\h \w \[$RED\]\$(parse_git_branch)\[$GREEN\]\n[\T] \[$WHITE\]$ " 
+PS1="\n\[${prompt_color}\]\u@\h \w \[$RED\]\$(parse_git_branch)\[$GREEN\]\n[\T] \[$WHITE\]$ " 
+
+unset prompt_color
+
