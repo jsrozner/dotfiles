@@ -51,12 +51,13 @@ layout 1monitor 'iTunes':REPEAT                          ${1-full}
 # Default Layouts
 default 1monitor  resolutions:${mon-laptop}
  
-bind e:cmd  ${showNormalHint}
 # ======================================
 # The HYPER key
 # ======================================
  
 alias hyper ctrl;shift;alt;cmd
+
+#bind e:cmd  ${showNormalHint}
  
 # Location bindings
 bind left:${hyper} ${lefthalf}
