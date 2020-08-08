@@ -13,6 +13,8 @@ config windowHintsSpread true
  
 # Monitor Aliases
 alias mon-laptop      0
+alias mon-vert        1
+alias mon-horiz       2
  
 # Misc Aliases
 alias showHintsLeftHand hint AOEUIYQJKX
@@ -63,6 +65,7 @@ alias hyper ctrl;shift;alt;cmd
 bind left:${hyper} ${lefthalf}
 bind up:${hyper} ${full}
 bind right:${hyper} ${righthalf}
+bind down:${hyper}    throw next
  
 bind l:${hyper}    focus right
 bind h:${hyper}     focus left

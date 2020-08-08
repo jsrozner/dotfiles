@@ -5,9 +5,11 @@
 function con {
   if [ ${#} -eq 0 ]; then
     echo "no environment, just enabling conda"
-    source ~/.condaprof 
+    #source ~/.condaprof 
+    conda activate
   else
-    source ~/.condaprof && conda activate $1
+    #source ~/.condaprof && conda activate $1
+    conda activate $1
   fi
   #echo "also unaliasing python and pip"
   #unalias python

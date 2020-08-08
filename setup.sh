@@ -13,9 +13,15 @@ done
 echo Copying specific config files ...
 echo ...
 
-echo Copying karabiner
+echo Symlinking Karabiner dir
 # copy karabiner directory, since single file doesn't work for profile switching
 ln -s `pwd`/other_config/karabiner/ ~/.config/
+
+echo Symlinking Jupyter dir
+ln -s `pwd`/other_config/jupyter/notebook.json ~/.jupyter/notebook.json
+#todo: install submodule for vim plugin for jupyter
+
+echo Done!
 
 
 
