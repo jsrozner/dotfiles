@@ -75,6 +75,7 @@ fi
 #fi
 #### END OLD ###
 
+# todo needed?
 export PATH=/usr/local/sbin:$PATH
 
 # >>> conda initialize >>>
@@ -90,6 +91,9 @@ else
     fi
 fi
 unset __conda_setup
+
 # <<< conda initialize <<<
+# josh adds:
+conda deactivate
 
 

@@ -18,7 +18,7 @@ echo Symlinking Karabiner dir
 ln -s `pwd`/other_config/karabiner/ ~/.config/
 
 echo Symlinking Jupyter dir
-ln -s `pwd`/other_config/jupyter/notebook.json ~/.jupyter/notebook.json
+ln -s `pwd`/other_config/jupyter/ ~/.jupyter
 #todo: install submodule for vim plugin for jupyter
 
 echo Done!
