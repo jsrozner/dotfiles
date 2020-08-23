@@ -20,3 +20,7 @@ Thumbs.db
 # Intellij files
 .idea
 *.iml
+
+#pycache
+__pycache__
+
