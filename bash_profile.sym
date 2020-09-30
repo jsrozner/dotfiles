@@ -20,8 +20,9 @@ export PATH=/usr/local/sbin:$PATH
 # export CDPATH=.:~:~/Programming:~/Classes
 
 # Load the shell dotfiles, and then some:
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-  [ ! -f "$file" ] && echo "$file" does not exist (bash_profile.sym)
+# removed: path, extra
+for file in ~/.{bash_prompt,exports,aliases,functions}; do
+  [ ! -f "$file" ] && echo "$file" does not exist bash_profile.sym
 	[ -r "$file" ] && source "$file" 
 done
 unset file
@@ -47,7 +48,7 @@ set -o vi
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
 # If possible, add tab completion for many more commands
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ -x "$(type brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 # Add tab completion for `defaults read|write NSGlobalDomain`
