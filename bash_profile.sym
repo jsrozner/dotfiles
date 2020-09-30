@@ -45,21 +45,29 @@ for option in autocd globstar; do
 done
 # VI mode!
 set -o vi
+
+exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
+
 # If possible, add tab completion for many more commands
-if [ -x "$(type brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
+if exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
 ###
-# Conda
+# Conda for local mac
 ###
 
-if [ `whoami` == "jsrozner" ]; then
+if [ `whoami` == "jsrozner" ]
+then 
   echo "setting mac for conda"
 
 # >>> conda initialize >>>
@@ -79,7 +87,13 @@ if [ `whoami` == "jsrozner" ]; then
 
 # josh adds:
   conda deactivate
+fi
 
+# Stanford profile sourcing
+if [ `hostname` == "sc.stanford.edu" ]
+then 
+  echo "sourcing stanf nlp profile"
+  . .prof_stanf_nlp
 fi
 
 
