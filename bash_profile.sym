@@ -4,64 +4,95 @@
 # many configs are loaded from other files
 # different configs loaded based on OS
 
-#
-#
 
 # avoid accidental deletes
 #alias rm="rm -i"
 
-
+###
+# PATH mods
+###
 # default OS X PATH, look in current directory
 export GOPATH="/usr/local/gopath"
 export PATH="$GOPATH:$GOPATH/bin:$PATH:$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
-
+# todo needed?
+export PATH=/usr/local/sbin:$PATH
 # default OS X CDPATH. Can be overwritten in other profiles.
 # export CDPATH=.:~:~/Programming:~/Classes
 
-
 # Load the shell dotfiles, and then some:
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,zoo_config}; do
-	[ -r "$file" ] && source "$file"
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+  [ ! -f "$file" ] && echo "$file" does not exist (bash_profile.sym)
+	[ -r "$file" ] && source "$file" 
 done
 unset file
 
+###
+# BASH mods
+###
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
-
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
-
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
-
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null
 done
-
 # VI mode!
 set -o vi
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
-
+# If possible, add tab completion for many more commands
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
-# Mac specific tweaks
-if [ `uname` == "Darwin" ]; then
-  echo "sourching mac profile"
-  . ~/.osx_profile
-  # Use python3 and pip3 as defaults
-  # commented: this is fixed by adding a symlink in /usr/local/bin
-  #alias python=/usr/local/bin/python3
-  # alias pip=/usr/local/bin/pip3
+###
+# Conda
+###
+
+if [ `whoami` == "jsrozner" ]; then
+  echo "setting mac for conda"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+          . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+      else
+          export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+# <<< conda initialize <<<
+
+# josh adds:
+  conda deactivate
+
 fi
 
+
+
 #### OLD ####
+# Mac specific tweaks
+#if [ `uname` == "Darwin" ]; then
+#  echo "sourching mac profile"
+#  . ~/.osx_profile
+#  # Use python3 and pip3 as defaults
+#  # commented: this is fixed by adding a symlink in /usr/local/bin
+#  #alias python=/usr/local/bin/python3
+#  # alias pip=/usr/local/bin/pip3
+#fi
 # Execute special setup for osx, zoo, and linux boxes.
 #
 #if [ `uname` == "Linux" ]; then
@@ -74,26 +105,5 @@ fi
 #  . ~/.linbox_profile
 #fi
 #### END OLD ###
-
-# todo needed?
-export PATH=/usr/local/sbin:$PATH
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# <<< conda initialize <<<
-# josh adds:
-conda deactivate
 
 

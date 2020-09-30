@@ -48,5 +48,7 @@ set fo+=t
 filetype indent on
 filetype plugin on
 
+" backspcae
+:set backspace=2
 
 

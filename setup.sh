@@ -9,6 +9,7 @@ do
   fi
 done
 
+if 
 # copy other config files
 echo Copying specific config files ...
 echo ...

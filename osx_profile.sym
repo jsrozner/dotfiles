@@ -1,3 +1,7 @@
+# ################
+# Note this file is no longer used
+# ################
+
 # config defaults for OS X
 
 # check hibernate mode
@@ -12,9 +16,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 
 # If possible, add tab completion for many more commands
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+# Added to bash_profile
+#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#    . $(brew --prefix)/etc/bash_completion
+#fi
 
-export NLTK_DATA="/opt/python_share/nltk/nltk_data"
+# export NLTK_DATA="/opt/python_share/nltk/nltk_data"
 
