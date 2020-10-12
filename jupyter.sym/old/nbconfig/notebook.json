@@ -1,0 +1,22 @@
+{
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  },
+  "keys": {
+    "command": {
+      "unbind": [
+        "ctrl-enter",
+        "alt-enter"
+      ],
+      "bind": {
+        "shift-enter": "jupyter-notebook:run-cell"
+      }
+    }
+  },
+  "load_extensions": {
+    "vim_binding/vim_binding": true,
+    "vim_binding": true
+  }
+}

@@ -1,11 +1,13 @@
 #!/bin/bash
+# Any new folders or files added need to also be added here, unless they are
+# post-fixed with .sym
 
 echo Linking files to home directory
 
 for file in *.sym
 do
-  if [ -f $file ]; then
-    ln -s `pwd`/$file ~/.${file%.sym}
+  if [[ -f $file || -d $file ]]; then
+    ln -s `pwd`/$file ~/.${file%.sym} && echo linked $file
   fi
 done
 

@@ -1,5 +1,12 @@
 # Josh’s dotfiles
 
+# todo:
+# - review the mac defaults setup
+# - make sure pycharm syncs
+# - review synchronizing brew files
+
+# The following is from the original README (from fork)
+
 ## Installation
 
 ### Using Git and the bootstrap script
