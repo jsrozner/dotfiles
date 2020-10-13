@@ -1,14 +1,96 @@
-# Henry's tmux conf
-# Make it use C-a, similar to screen..
-#unbind C-b
-#unbind l
-#set -g prefix C-a
+# Tips:
+# - -r means repeat
+
+###########################
+# Plugins
+###########################
+# To install plugins:
+#   1) Add plugin down here
+#   2) Prefix + I to install plugin
+# To update plugins:
+#   1) Prefix + U
+# To remove plugins:
+#   1) Remove line down here
+#   2) Prefix + ALT + U
+# If you're using iTerm2 on a Mac you may need to go to your Profiles,
+# then keys and select that the `option` key should be treated as `Esc+`
+# in order for the `Prefix + ALT + U` combination to work.
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Add more plugins below this line
+set -g @plugin 'christoomey/vim-tmux-navigator'#
+
+# Run Tmux Plugin Manager
+run '~/.tmux/plugins/tpm/tpm'
+
+
+# basic
+unbind C-b
+set -g prefix C-a
+bind-key C-a send-prefix
 #bind-key C-a last-window
  
+
+# Create Panes: window splitting
+# Split vertically
+unbind %
+bind | split-window -h    # Prefix | to create vertical split
+# Split horizontally
+unbind '"'
+bind - split-window -v    # Prefix - to create horizontal split
+
+# resizing panes:
+bind -r H resize-pane -L 5   # 5 px bigger to the left
+bind -r J resize-pane -D 5   # 5 px bigger down
+bind -r K resize-pane -U 5   # 5 px bigger up
+bind -r L resize-pane -R 5   # 5 px bigger right#
+
+# Quick window selection
+bind -r C-h select-window -t :-   # Jump to window on the left
+bind -r C-l select-window -t :+   # Jump to window on the right
+
 # Reload key
-#bind r source-file ~/.tmux.conf
+bind r source-file ~/.tmux.conf
+
+###########################
+# Colors
+###########################
+
+# color status bar
+set -g status-style fg=white,bg=colour235
+# color of message bar
+set -g message-style fg=white,bold,bg=green
+
+# highlight current window
+setw -g window-status-style fg=cyan,bg=colour235
+setw -g window-status-current-style fg=white,bold,bg=red
+
+# set color of active pane
+set -g pane-border-style fg=colour240,bg=black
+set -g pane-active-border-style fg=green,bg=black
    
+
+
+
+
+
 #set -g default-terminal "screen-256color"
 #set -g history-limit 1000
 #set -g mode-mouse on
 #bind a send-prefix
+#unbind l
+
+
+
+
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# highlight current window
+#set-window-option -g window-status-current-bg yellow
+

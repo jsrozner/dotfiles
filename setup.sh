@@ -1,13 +1,18 @@
 #!/bin/bash
+# Any new folders or files added need to also be added here, unless they are
+# post-fixed with .sym
 
 echo Linking files to home directory
 
-for file in *.sym
-do
-  if [ -f $file ]; then
-    ln -s `pwd`/$file ~/.${file%.sym} && echo linked "$file"
+for file in *.sym; do
+  if [[ -f $file ]]; then
+    ln -s `pwd`/$file ~/.${file%.sym} && echo linked $file
+  # avoid copying twice (e.g. tmux.sym/tmux.sym)
+  elif [[ -d $file && ! -d ~/.${file%.sym} ]]; then   
+    ln -s `pwd`/$file ~/.${file%.sym} && echo linked dir $file
   fi
 done
+
 
 if [ `whoami` == "jsrozner" ]; then
   echo "linking mac specific files"
@@ -21,10 +26,6 @@ if [ `whoami` == "jsrozner" ]; then
 else
   echo "skipped some links because not on mac"
 fi
-
-echo Symlinking Jupyter dir
-ln -s `pwd`/other_config/jupyter/ ~/.jupyter
-#todo: install submodule for vim plugin for jupyter
 
 echo Done!
 

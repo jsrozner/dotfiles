@@ -1,5 +1,27 @@
 # Josh’s dotfiles
 
+# todo:
+# - review the mac defaults setup
+# - make sure pycharm syncs
+# - review synchronizing brew files
+
+# The following is from the original README (from fork)
+
+
+# Notes on various installations:
+## Python
+It's okay to keep a python installed by brew, but avoid using installing
+packages to it; instead use conda to manage packages. For example jupyter should
+be installed via conda. 
+
+Same with pip; in fact it probably makes sense not to have a pip available in
+/usr/local/bin; instead maybe keep only a pip3
+
+## Jupyter
+pip install jupyter_contrib_nbextensions
+# todo: we should verify that this is installed on other machines
+https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html
+
 ## Installation
 
 ### Using Git and the bootstrap script

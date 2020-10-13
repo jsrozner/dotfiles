@@ -2,6 +2,16 @@
 ## MY FUNCTIONS ##
 ##################
 
+function stanf {
+  klist -s || kinit rozner@CS.STANFORD.EDU
+  if [ ${#} -eq 0 ]; then
+    ssh sc
+  else
+    ssh $1
+  fi
+}
+
+# conda function
 function con {
   if [ ${#} -eq 0 ]; then
     echo "no environment, just enabling conda"
