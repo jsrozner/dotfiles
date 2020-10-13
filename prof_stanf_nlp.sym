@@ -50,7 +50,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#source /usr/share/bash-completion/completions/git
+source /usr/share/bash-completion/completions/git
 
 # Stanford NLP group defaults
 

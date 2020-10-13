@@ -1,5 +1,5 @@
 [submodule "vim.sym/pack/plugin/start"]
-	path = vim.sym/pack/plugin/start
+	path = vim.sym/pack/bundle/start/start
 	url = git@github.com:christoomey/vim-tmux-navigator.git
 [submodule "tmux.sym/plugins/tpm"]
 	path = tmux.sym/plugins/tpm

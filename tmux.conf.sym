@@ -15,13 +15,18 @@
 # If you're using iTerm2 on a Mac you may need to go to your Profiles,
 # then keys and select that the `option` key should be treated as `Esc+`
 # in order for the `Prefix + ALT + U` combination to work.
+#
+# See: https://github.com/tmux-plugins/tmux-sensible
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
 # Add more plugins below this line
-set -g @plugin 'christoomey/vim-tmux-navigator'#
+#set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # Run Tmux Plugin Manager
 run '~/.tmux/plugins/tpm/tpm'
@@ -49,8 +54,12 @@ bind -r K resize-pane -U 5   # 5 px bigger up
 bind -r L resize-pane -R 5   # 5 px bigger right#
 
 # Quick window selection
-bind -r C-h select-window -t :-   # Jump to window on the left
-bind -r C-l select-window -t :+   # Jump to window on the right
+#bind -r C-h select-window -t :-   # Jump to window on the left
+#bind -r C-l select-window -t :+   # Jump to window on the right
+
+# VIM-like
+set-window-option -g mode-keys vi
+set -g status-keys vi
 
 # Reload key
 bind r source-file ~/.tmux.conf
@@ -71,11 +80,6 @@ setw -g window-status-current-style fg=white,bold,bg=red
 # set color of active pane
 set -g pane-border-style fg=colour240,bg=black
 set -g pane-active-border-style fg=green,bg=black
-   
-
-
-
-
 
 #set -g default-terminal "screen-256color"
 #set -g history-limit 1000
@@ -86,11 +90,31 @@ set -g pane-active-border-style fg=green,bg=black
 
 
 
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
+#bind -n M-Left select-pane -L
+#bind -n M-Right select-pane -R
+#bind -n M-Up select-pane -U
+#bind -n M-Down select-pane -D
 
 # highlight current window
 #set-window-option -g window-status-current-bg yellow
+
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
 

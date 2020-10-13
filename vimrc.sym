@@ -51,4 +51,11 @@ filetype plugin on
 " backspcae
 :set backspace=2
 
+"let g:tmux_navigator_no_mappings = 1
+"
+"nnoremap <silent> <C-J> :TmuxNavigateDown<CR>
+"nnoremap <silent> <C-K> :TmuxNavigateUp<CR>
+"nnoremap <silent> <C-L> :TmuxNavigateRight<CR>
+"nnoremap <silent> <C-\> :TmuxNavigatePrevious<CR>
+"nnoremap <silent> <C-H> :TmuxNavigateLeft<CR>
 

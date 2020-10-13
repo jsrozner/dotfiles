@@ -1,35 +1,25 @@
 # bash_profile
-# this is automatically loaded by bashrc
-# sets up default configs
+# this is automatically called by bashrc
 # many configs are loaded from other files
 # different configs loaded based on OS
 
-
-# avoid accidental deletes
-#alias rm="rm -i"
-
-###
-# PATH mods
-###
-# default OS X PATH, look in current directory
-export GOPATH="/usr/local/gopath"
-export PATH="$GOPATH:$GOPATH/bin:$PATH:$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
-# todo needed?
-export PATH=/usr/local/sbin:$PATH
-# default OS X CDPATH. Can be overwritten in other profiles.
-# export CDPATH=.:~:~/Programming:~/Classes
-
 # Load the shell dotfiles, and then some:
 # removed: path, extra
+
+#########
+# COMMON
+#########
+echo "sourcing bash_prompts, exports, aliases, function"
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
-  [ ! -f "$file" ] && echo "$file" does not exist bash_profile.sym
+  [ ! -f "$file" ] && echo "$file does not exist (bash_profile.sym)"
 	[ -r "$file" ] && source "$file" 
 done
 unset file
 
-###
+#########
 # BASH mods
-###
+#########
+echo "making various bash mods"
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -46,24 +36,45 @@ done
 # VI mode!
 set -o vi
 
-exists() {
-  command -v "$1" >/dev/null 2>&1
-}
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
 
-# If possible, add tab completion for many more commands
-if exists brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
-# bsah completion - source if available
+# bash completion - source if available
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
+
+##################
+# Computer specific
+##################
+
+# Stanford profile sourcing
+if [[ `hostname` == *"stanford.edu" ]]
+then 
+  echo "sourcing stanf nlp profile"
+  . .prof_stanf_nlp
+  exit 0
+fi
+
+####################
+# MAC ONLY
+####################
+echo "we seem to be on josh's mac. sourcing appropriately"
+
+([[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh") || echo "bash completion seems not to be installed"
+
+###
+# PATH mods
+###
+# default OS X PATH, look in current directory
+export GOPATH="/usr/local/gopath"
+export PATH="$GOPATH:$GOPATH/bin:$PATH:$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:."
+# todo needed?
+export PATH=/usr/local/sbin:$PATH
+# default OS X CDPATH. Can be overwritten in other profiles.
+# export CDPATH=.:~:~/Programming:~/Classes
 
 ###
 # Conda for local mac
@@ -87,22 +98,15 @@ then
   fi
   unset __conda_setup
 # <<< conda initialize <<<
-
 # josh adds:
   conda deactivate
-fi
 
-# Stanford profile sourcing
-if [[ `hostname` == *"stanford.edu" ]]
-then 
-  echo "sourcing stanf nlp profile"
-  . .prof_stanf_nlp
 fi
 
 
-### Some checks ####
-# todo
-# brew list bash-completion@2 || echo bash-completion@2 is not installed; run brew insall bash-completion@2, and also potentially update bash > 4
+# avoid accidental deletes
+#alias rm="rm -i"
+
 
 #### OLD ####
 # Mac specific tweaks
