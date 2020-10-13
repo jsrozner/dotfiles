@@ -50,12 +50,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#source /usr/share/bash-completion/completions/git
+
 # Stanford NLP group defaults
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/u/nlp/bin:/usr/local/cuda-10.1/bin:/u/nlp/aws/bin
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
+echo setup anaconda for stanford
 __conda_setup="$('/u/nlp/anaconda/main/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"

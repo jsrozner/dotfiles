@@ -90,7 +90,7 @@ then
 fi
 
 # Stanford profile sourcing
-if [ `hostname` == "sc.stanford.edu" ] || [ `hostname` == "scdt.stanford.edu" ]
+if [[ `hostname` == *"stanford.edu" ]]
 then 
   echo "sourcing stanf nlp profile"
   . .prof_stanf_nlp
