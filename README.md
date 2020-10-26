@@ -5,7 +5,10 @@
 # - make sure pycharm syncs
 # - review synchronizing brew files
 
-# The following is from the original README (from fork)
+# HOW TO USE
+- files or folders with .sym will be symlinked into ~/
+- after creating a new file or folder, run setup.sh to symlink
+- if it needs to be sourced, add sourcing appropriately
 
 
 # Notes on various installations:
@@ -22,6 +25,8 @@ pip install jupyter_contrib_nbextensions
 # todo: we should verify that this is installed on other machines
 https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html
 
+
+##################################################3
 ## Installation
 
 ### Using Git and the bootstrap script

@@ -1,0 +1,79 @@
+##
+# Functions and aliases for use with stanford nlp cluster (whether on cluster or on mac)
+##
+
+echo "Sourcing in func_stanf"
+
+# enable tunneling (machine) -> (jamie) -> local mac
+mount_point="~/mountpoint"
+# 8888 is a lucky number
+jupyter_port=8888   # the jupyter port
+jamie_port=8887   
+mac_mount_port=8886
+
+# To mount remote (NLP cluster) via sshfs.
+# SSHFS should be configured as https://howchoo.com/mac/how-to-install-sshfs
+# brew cask install osxfuse, brew instsall sshfs
+
+# for example, 6729 3760 jagupard15 will tunnel jagupard15 3760 to 6729 local
+# (e.g. jamie)
+function tun {
+  if [ ${#} -ne 3 ]; then
+    echo "Usage: tun <output port> <source port> <origin>"
+  fi
+  ssh -N -L $1:localhost:$2 $3
+}
+
+# Run on jamie
+func jtun {
+  tun ${jamie_port} {jupyter_port} $1
+  echo "Origin port (jupyter) ${jupyter_port} from ${1} to localhost:${jamie_port}"
+}
+
+# Start a jupyter notebook from stanf machine on jupyter_port
+alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser
+--port=$jupyter_port'
+
+
+# slurm interactive
+# si <john|jag> <conda env name>
+function si {
+  if [ ${$} -neq 2 ]; then
+    echo "Usage: <john|jag> <conda env name>"
+    return
+  fi
+
+  nlprun -q $1 -a $2
+}
+#alias si_john='si john '
+#alias si_jag='nlprun -q jag -p standard -a py36-abisee -g 1'
+
+
+# Kinit and ssh to any of sc, scdt, jamie
+function stanf {
+  if [ `whoami` != "jsrozner" ]
+  then 
+    echo "Run stanf function only on local mac"
+    return
+  fi
+
+  # Mount for scratch space
+  sshfs rozner@jamie.stanford.edu:/juice/scr/rozner $mount_point
+  echo "  Remote mounted at $mountpoint. Use um to unmount"
+
+  # Link remote port
+  tun ${mac_mount_port} ${jamie_port} jamie.stanford.edu
+  echo "  forwarding jamie port ${jamie_port} to localhost:${mac_mount_port}"
+  
+  # also kinit
+  klist -s || kinit rozner@CS.STANFORD.EDU
+
+  # ssh onto machine if arg given
+  if [ ${#} -eq 0 ]; then
+    return
+  fi
+
+  ssh $1
+}
+alias um='umount ${mount_point}'
+

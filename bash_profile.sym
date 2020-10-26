@@ -9,12 +9,13 @@
 #########
 # COMMON
 #########
-echo "sourcing bash_prompts, exports, aliases, function"
-for file in ~/.{bash_prompt,exports,aliases,functions}; do
+echo "From bash_profile, sourcing bash_prompts, exports, aliases, function, function_stanf"
+for file in ~/.{bash_prompt,exports,aliases,functions,func_stanf}; do
   [ ! -f "$file" ] && echo "$file does not exist (bash_profile.sym)"
 	[ -r "$file" ] && source "$file" 
 done
 unset file
+echo "Done sourcing auxiliary. Continuing in bash_profile" 
 
 #########
 # BASH mods
