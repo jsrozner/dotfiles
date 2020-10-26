@@ -4,3 +4,6 @@ other_config/Alfred.alfredpreferences/remote
 other_config/Alfred.alfredpreferences/workflows
 other_config/karabiner/automatic_backups/
 
+tmux.sym/plugins/*
+tmux.sym/resurrect
+
