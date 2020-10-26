@@ -31,8 +31,7 @@ function jtun {
 }
 
 # Start a jupyter notebook from stanf machine on jupyter_port
-alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser
---port=$jupyter_port'
+alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser --port=$jupyter_port'
 
 
 # slurm interactive
@@ -57,16 +56,17 @@ function stanf {
     return
   fi
 
-  # Mount for scratch space
-  sshfs rozner@jamie.stanford.edu:/juice/scr/rozner $mount_point
-  echo "  Remote mounted at $mountpoint. Use um to unmount"
-
-  # Link remote port
-  tun ${mac_mount_port} ${jamie_port} jamie.stanford.edu
-  echo "  forwarding jamie port ${jamie_port} to localhost:${mac_mount_port}"
-  
   # also kinit
   klist -s || kinit rozner@CS.STANFORD.EDU
+
+  # Mount for scratch space
+  echo "  Mounting remote at $mountpoint. Use um to unmount"
+  sshfs jamie:/juice/scr/rozner $mount_point
+
+  # Link remote port
+  echo "  forwarding jamie port ${jamie_port} to localhost:${mac_mount_port}"
+  tun ${mac_mount_port} ${jamie_port} jamie
+  
 
   # ssh onto machine if arg given
   if [ ${#} -eq 0 ]; then
