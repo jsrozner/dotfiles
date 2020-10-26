@@ -26,8 +26,8 @@ function tun {
 
 # Run on jamie
 function jtun {
-  tun ${jamie_port} ${jupyter_port} $1
   echo "Origin port (jupyter) ${jupyter_port} from ${1} to localhost:${jamie_port}"
+  tun ${jamie_port} ${jupyter_port} $1
 }
 
 # Start a jupyter notebook from stanf machine on jupyter_port
@@ -37,7 +37,7 @@ alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser --port=$jupyt
 # slurm interactive
 # si <john|jag> <conda env name>
 function si {
-  if [ ${$} -neq 2 ]; then
+  if [ ${#} -neq 2 ]; then
     echo "Usage: <john|jag> <conda env name>"
     return
   fi
