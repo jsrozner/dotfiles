@@ -31,17 +31,15 @@ tensorboard_port=8887
 # (from sc) tun 6729 3760 jagupard15 will tunnel jagupard15 3760 to 6729 local (on sc)
 # then (from local) tun 3759 6729 sc will tunnel sc 6729 to 3759 local (your
 # personal machine)
-function tun {
-  if [ ${#} -ne 3 ]; then
-    echo "Usage: tun <output port> <source port> <origin>"
-    echo got ${@}
-    return
-  fi
-  ssh -N -L $1:localhost:$2 $3 $@
-}
-
-# Start a jupyter notebook from stanf machine on jupyter_port
-alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser --port=$jupyter_port'
+#function tun {
+#  if [ ${#} -ne 3 ]; then
+#    echo "Usage: tun <output port> <source port> <origin>"
+#    echo got ${@}
+#    return
+#  fi
+#  ssh -N -L $1:localhost:$2 $3 $@
+#}
+#
 
 # slurm interactive
 # si <john|jag> <conda env name>
@@ -56,6 +54,8 @@ function si {
 #alias si_john='si john '
 #alias si_jag='nlprun -q jag -p standard -a py36-abisee -g 1'
 
+# Start a jupyter notebook from stanf machine on jupyter_port
+alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser --port=$jupyter_port'
 
 # run on jagupard or john to setup jupyter and tensorboard
 function jagup {
@@ -89,15 +89,24 @@ function jagup {
   if [ -n "$jup_dir" ]; then
     echo "Running jupyter in ${jup_dir}"
     pushd $jup_dir ; jp & popd
-    ssh -N -L ${jupyter_port}:sc:${jupyter_port} localhost &
   fi
   if [ -n "$tboard_dir" ]; then
     echo "Running tensorboard with savedir {tboard_dir}"
     tensorboard --logdir=${tboard_dir} --port=${tensorboard_port} &
-    ssh -N -L ${tensorboard_port}:sc:${tensorboard_port} localhost &
   fi 
 }
 
+function sremote {
+  # also kinit
+  klist -s || -l 72h kinit rozner@CS.STANFORD.EDU
+
+  # ssh onto machine if arg given
+  if [ ${#} -eq 0 ]; then
+    return
+  fi
+
+  ssh $1
+}
 
 # Kinit and ssh to any of sc, scdt, jamie
 # Args: $1 optional; if give will ssh into this node
@@ -109,24 +118,40 @@ function stanf {
   fi
 
   # also kinit
-  klist -s || -l 72h kinit rozner@CS.STANFORD.EDU
+  sremote
 
   # Mount for scratch space
   echo "  Mounting remote at ${mount_point}. Use 'um' to unmount"
   sshfs scdt: $mount_point
 
-  # Link remote port
-  echo "  forwarding sc ports ${jupyter_port} ${tensorboard_port} to localhost"
-  echo "  same ports. Command backgrounded"
-  tun ${jupyter_port} ${jupyter_port} sc &
-  tun ${tensorboard_port} ${tensorboard_port} sc &
-
   # ssh onto machine if arg given
-  if [ ${#} -eq 0 ]; then
-    return
+  if [ ${#} -ne 0 ]; then
+    sremote $1
   fi
 
-  ssh $1
+  echo "after setting up a remote job, run tunnels locally"
 }
 alias um='umount ${mount_point}'
 
+alias sc='sremote sc'
+alias scdt='sremote scdt'
+
+
+function tunnels {
+  if [ ${#} -lt 2 ]; then
+    echo "Usage: machine (e.g. jagupard10) port1 (optional) port2"
+    return
+  fi
+
+  host=$1.stanford.edu
+
+  echo "ssh -N -L $2:localhost:$2 $host &"
+  ssh -N -L ${2}:localhost:${2} $host &
+  echo "linked port $2"
+
+  if [ ${#} -eq 3 ]; then
+    echo ssh -N -L $3:localhost:$3 $host &
+    ssh -N -L $3:localhost:$3 $host &
+    echo "linked port $3"
+  fi
+}
