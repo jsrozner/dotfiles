@@ -3,7 +3,7 @@
 	email = jsrozner@gmail.com
 
 [credential]
-  helper = osxkeychain
+	helper = store
 
 [alias]
 	# View the SHA, description, and history graph of the latest 20 commits
@@ -86,8 +86,3 @@
 	default = simple
 [remote "origin"]
 	push = HEAD
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
