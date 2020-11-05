@@ -2,42 +2,51 @@
 # Functions and aliases for use with stanford nlp cluster (whether on cluster or on mac)
 ##
 
-echo "Sourcing in func_stanf"
 
-# enable tunneling (machine) -> (jamie) -> local mac
-mount_point="~/mountpoint"
-# 8888 is a lucky number
-jupyter_port=8888   # the jupyter port
-jamie_port=8887   
-mac_mount_port=8886
-
-# To mount remote (NLP cluster) via sshfs.
+# This script will
+# - set up sshfs
+# - set up appropriate port forwarding for jupyter notebooks and tensorboard
+# - check if kinit token exists and prompt for sign in if not
+#
+# Additional Notes:
 # SSHFS should be configured as https://howchoo.com/mac/how-to-install-sshfs
 # brew cask install osxfuse, brew instsall sshfs
 
-# for example, 6729 3760 jagupard15 will tunnel jagupard15 3760 to 6729 local
-# (e.g. jamie)
+echo "Sourcing in func_stanf"
+
+# Config (change these)
+mount_point="/Users/jsrozner/MOUNT/scdt"    # Your local mnt dir
+local_user_name='jsrozner'    # update this to avoid accidentally running from remote
+sc_user_name='rozner'
+
+# Ports for tunneling
+jupyter_port=8888         # 8888 is a lucky number 
+tensorboard_port=8887
+
+# tunnel $3(machine):$2(port) to localhost:$1(port)
+# i.e. if you have a process running on $3==machine at $2==machine_port
+# that process will become visible on localhost:$1==port
+#
+# for example, running from sc node
+# (from sc) tun 6729 3760 jagupard15 will tunnel jagupard15 3760 to 6729 local (on sc)
+# then (from local) tun 3759 6729 sc will tunnel sc 6729 to 3759 local (your
+# personal machine)
 function tun {
   if [ ${#} -ne 3 ]; then
     echo "Usage: tun <output port> <source port> <origin>"
+    echo got ${@}
+    return
   fi
-  ssh -N -L $1:localhost:$2 $3
-}
-
-# Run on jamie
-function jtun {
-  echo "Origin port (jupyter) ${jupyter_port} from ${1} to localhost:${jamie_port}"
-  tun ${jamie_port} ${jupyter_port} $1
+  ssh -N -L $1:localhost:$2 $3 $@
 }
 
 # Start a jupyter notebook from stanf machine on jupyter_port
 alias jp='export XDG_RUNTIME_DIR=""; jupyter notebook --no-browser --port=$jupyter_port'
 
-
 # slurm interactive
 # si <john|jag> <conda env name>
 function si {
-  if [ ${#} -neq 2 ]; then
+  if [ ${#} -ne 2 ]; then
     echo "Usage: <john|jag> <conda env name>"
     return
   fi
@@ -48,25 +57,69 @@ function si {
 #alias si_jag='nlprun -q jag -p standard -a py36-abisee -g 1'
 
 
+# run on jagupard or john to setup jupyter and tensorboard
+function jagup {
+  if [[ `hostname` != john* ]] && [[ `hostname` != jagupard* ]];
+  then 
+    echo "Run jagup on john or jagupard nodes. You're on `hostname`"
+    return
+  fi
+
+  # make sure nothing from outside influences us
+  # reset OPTIND sinc we define this in a function, rather than as a script
+  unset jup_dir tboard_dir
+  OPTIND=1
+  # set up port forwarding
+  # default arguments
+  jup_dir=""
+  tboard_dir=""
+  # colon specifies an optional arg with a value
+  while getopts "j:t:" flag; do
+    case $flag in
+      j) jup_dir=$flag;;
+      t) tboard_dir=$flag;;
+    esac
+  done
+
+  if [ ! -n "$jup_dir" ] && [ ! -n "$tboard_dir" ]; then
+    echo "Usage: -j <jup_dir> -t <tboard_log_dir>"
+    return
+  fi
+
+  if [ -n "$jup_dir" ]; then
+    echo "Running jupyter in ${jup_dir}"
+    pushd $jup_dir ; jp & popd
+    ssh -N -L ${jupyter_port}:sc:${jupyter_port} localhost &
+  fi
+  if [ -n "$tboard_dir" ]; then
+    echo "Running tensorboard with savedir {tboard_dir}"
+    tensorboard --logdir=${tboard_dir} --port=${tensorboard_port} &
+    ssh -N -L ${tensorboard_port}:sc:${tensorboard_port} localhost &
+  fi 
+}
+
+
 # Kinit and ssh to any of sc, scdt, jamie
+# Args: $1 optional; if give will ssh into this node
 function stanf {
-  if [ `whoami` != "jsrozner" ]
+  if [ `whoami` != ${local_user_name} ]
   then 
     echo "Run stanf function only on local mac"
     return
   fi
 
   # also kinit
-  klist -s || kinit rozner@CS.STANFORD.EDU
+  klist -s || -l 72h kinit rozner@CS.STANFORD.EDU
 
   # Mount for scratch space
-  echo "  Mounting remote at $mountpoint. Use um to unmount"
-  sshfs jamie:/juice/scr/rozner $mount_point
+  echo "  Mounting remote at ${mount_point}. Use 'um' to unmount"
+  sshfs scdt: $mount_point
 
   # Link remote port
-  echo "  forwarding jamie port ${jamie_port} to localhost:${mac_mount_port}"
-  tun ${mac_mount_port} ${jamie_port} jamie
-  
+  echo "  forwarding sc ports ${jupyter_port} ${tensorboard_port} to localhost"
+  echo "  same ports. Command backgrounded"
+  tun ${jupyter_port} ${jupyter_port} sc &
+  tun ${tensorboard_port} ${tensorboard_port} sc &
 
   # ssh onto machine if arg given
   if [ ${#} -eq 0 ]; then
