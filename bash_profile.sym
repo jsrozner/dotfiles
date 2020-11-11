@@ -22,6 +22,8 @@ echo "Done sourcing auxiliary. Continuing in bash_profile"
 #########
 echo "making various bash mods"
 
+# avoid closing tmux sessions
+set -o ignoreeof
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 # Append to the Bash history file, rather than overwriting it
