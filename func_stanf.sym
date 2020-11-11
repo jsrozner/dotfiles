@@ -88,17 +88,17 @@ function jagup {
 
   if [ -n "$jup_dir" ]; then
     echo "Running jupyter in ${jup_dir}"
-    pushd $jup_dir ; jp & popd
+    (cd $jup_dir && jp &)
   fi
   if [ -n "$tboard_dir" ]; then
-    echo "Running tensorboard with savedir {tboard_dir}"
+    echo "Running tensorboard with savedir ${tboard_dir}"
     tensorboard --logdir=${tboard_dir} --port=${tensorboard_port} &
   fi 
 }
 
 function sremote {
   # also kinit
-  klist -s || -l 72h kinit rozner@CS.STANFORD.EDU
+  klist -s || kinit -l 72h rozner@CS.STANFORD.EDU
 
   # ssh onto machine if arg given
   if [ ${#} -eq 0 ]; then
